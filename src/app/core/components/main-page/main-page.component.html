@@ -1,3 +1,6 @@
-<p>
-  main-page works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let item of imageSrc">
+    {{ item.text }}
+    <img [src]="item.photo" alt="Imagen">
+  </ion-item>
+</ion-list>

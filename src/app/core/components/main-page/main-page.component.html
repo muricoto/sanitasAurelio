@@ -1,6 +1,13 @@
-<ion-list>
-  <ion-item *ngFor="let item of imageSrc">
-    {{ item.text }}
-    <img [src]="item.photo" alt="Imagen">
-  </ion-item>
-</ion-list>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor='let item of imageSrc | paginate: {id:"firstPagination", itemsPerPage: 50, currentPage: page }'>
+      {{ item.text }}
+      <img [src]="item.photo">
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<div id="firstPagination">
+  <pagination-controls *ngIf="imageSrc.length>50" id="firstPagination" (pageChange)="page = $event"
+    previousLabel="Anterior" nextLabel="Siguiente" (click)="jsonCreator()"></pagination-controls>
+</div>

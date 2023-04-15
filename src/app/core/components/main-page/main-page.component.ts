@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoService } from '../../services/photo.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-main-page',
@@ -13,10 +11,9 @@ export class MainPageComponent implements OnInit {
   page: number;
   index = 0;
   allImages = false;
+  imageFilter = ''
 
   constructor(
-    private photoService: PhotoService,
-    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -46,30 +43,28 @@ export class MainPageComponent implements OnInit {
 
   jsonCreator() {
     this.checkSize(this.index)
-    let id
-    let photo
+
+    let url = 'https://picsum.photos/id/'
 
     if (!this.allImages) {
-      for (let i = 0; i < 100; i++) {
-        id = this.index++
+      for (let i = 1; i < 100; i++) {
+        this.index++
 
-        const text = this.textCreator();
+          this.imageSrc.push({
+            id: i,
+            photo: `${url}${i}/500/500`,
+            text: this.textCreator()
+          })
 
-        this.photoService.getPhoto(id).subscribe(res => {
-          const objectUrl = URL.createObjectURL(res);
-          photo = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-
-          this.imageSrc.push({ id, photo, text })
-        })
       }
     }
+
   }
 
   checkSize(id: number) {
     //  Deberíamos poner máximo 4000, pero ponemos 1084 ya que a partir de ahí la web no tiene
     //  más imágenes generadas, para así evitar hacer llamadas sin respuesta
     if (id >= 1084) this.allImages = true
-
   }
 
 }

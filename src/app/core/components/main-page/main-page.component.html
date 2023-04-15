@@ -1,6 +1,7 @@
 <ion-content>
+  <ion-input type="search" [(ngModel)]="imageFilter"></ion-input>
   <ion-list>
-    <ion-item *ngFor='let item of imageSrc | paginate: {id:"firstPagination", itemsPerPage: 50, currentPage: page }'>
+    <ion-item *ngFor='let item of imageSrc | paginate: {id:"firstPagination", itemsPerPage: 50, currentPage: page } | filter: imageFilter'>
       {{ item.text }}
       <img [src]="item.photo">
     </ion-item>

@@ -18,8 +18,8 @@
 </ion-content>
 
 <ion-footer>
-  <div class="firstPagination">
-    <pagination-controls *ngIf="imageSrc.length>50" id="firstPagination" (pageChange)="page = $event"
+  <div class="footer-pagination">
+    <pagination-controls *ngIf="imageSrc.length>50" id="pagination" (pageChange)="page = $event"
       previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
   </div>
 </ion-footer>

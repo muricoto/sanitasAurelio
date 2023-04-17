@@ -1,0 +1,26 @@
+.container-image {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+
+    .container-image__text {
+        width: 64vw;
+        padding-right: 4vw;
+    }
+
+    .container-image__img {
+        padding: 0.5rem;
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    }
+}
+
+.firstPagination {
+    display: flex;
+    justify-content: space-around;
+    background: lightslategray;
+}

@@ -1,14 +1,25 @@
 <ion-content>
   <ion-input type="search" [(ngModel)]="imageFilter"></ion-input>
   <ion-list>
-    <ion-item *ngFor='let item of imageSrc | paginate: {id:"firstPagination", itemsPerPage: 50, currentPage: page } | filter: imageFilter'>
-      {{ item.text }}
-      <img [src]="item.photo">
+    <ion-item 
+      *ngFor='let item of imageSrc | paginate: {id:"firstPagination", itemsPerPage: 50, currentPage: page } | filter: imageFilter'>
+
+      <div class="container-image">
+        <div class="container-image__text">
+          <span>{{ item.text }}</span>
+        </div>
+        <div class="container-image__img" >
+          <img [src]="item.photo">
+        </div>
+      </div>
+
     </ion-item>
   </ion-list>
 </ion-content>
 
-<div id="firstPagination">
-  <pagination-controls *ngIf="imageSrc.length>50" id="firstPagination" (pageChange)="page = $event"
-    previousLabel="Anterior" nextLabel="Siguiente" ></pagination-controls>
-</div>
+<ion-footer>
+  <div class="firstPagination">
+    <pagination-controls *ngIf="imageSrc.length>50" id="firstPagination" (pageChange)="page = $event"
+      previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+  </div>
+</ion-footer>

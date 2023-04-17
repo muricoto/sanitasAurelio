@@ -4,11 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchTerm: string): any[] {
-    if (!items || !searchTerm) {
+  transform(items: any[], search: string): any[] {
+    if (!items || !search) {
       return items;
     }
-    const term = searchTerm.toLowerCase();
+    const term = search.toLowerCase();
     return items.filter(item =>
       item.id.toString().toLowerCase().includes(term) ||
       item.text.toLowerCase().includes(term)
